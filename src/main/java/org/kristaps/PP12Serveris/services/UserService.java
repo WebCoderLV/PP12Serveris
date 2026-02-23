@@ -1,0 +1,29 @@
+package org.kristaps.PP12Serveris.services;
+
+import org.kristaps.PP12Serveris.models.UserModel;
+import org.kristaps.PP12Serveris.repository.UserRepository;
+import org.springframework.stereotype.Service;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class UserService {
+
+    private final UserRepository userRepository;
+
+    // ManyToOne, OneToMany, ManyToMany, OneToOne
+    // Functional interface - lambda, stream, filter, map, reduce, forEach,
+    // anonymous class
+
+    public Long createUser(UserModel user) {
+
+        UserModel savedUser = userRepository.save(user);
+        return savedUser.getId();
+
+    }
+
+    public Boolean checkEmail(String email) {
+        return userRepository.existsByEmail(email);
+    }
+}
